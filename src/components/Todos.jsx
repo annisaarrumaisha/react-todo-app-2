@@ -4,8 +4,8 @@ import React from "react";
 // Impor komponen 'TodoItem' yang digunakan untuk menampilkan setiap tugas.
 import TodoItem from "./TodoItem";
 
-// Komponen 'Todos' menerima dua props: 'todos' (array daftar tugas) dan 'toggleCompleted' (fungsi untuk mengubah status tugas).
-const Todos = ({ todos, toggleCompleted }) => {
+// Komponen 'Todos' menerima tiga props: 'todos' (array daftar tugas), 'toggleCompleted' (fungsi untuk mengubah status tugas), dan 'deleteTodo' (fungsi untuk menghapus tugas).
+const Todos = ({ todos, toggleCompleted, deleteTodo }) => {
   return (
     <div style={styles.container}>
       {" "}
@@ -17,8 +17,9 @@ const Todos = ({ todos, toggleCompleted }) => {
         <TodoItem
           key={todo.id}
           todo={todo}
-          // Teruskan fungsi 'toggleCompleted' ke komponen 'TodoItem'.
+          // Teruskan fungsi 'toggleCompleted' dan 'deleteTodo' ke komponen 'TodoItem'.
           toggleCompleted={toggleCompleted}
+          deleteTodo={deleteTodo}
         />
       ))}
     </div>
