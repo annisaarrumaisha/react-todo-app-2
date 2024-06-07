@@ -6,6 +6,7 @@ import TodoItem from "./TodoItem";
 
 // Komponen 'Todos' menerima tiga props: 'todos' (array daftar tugas), 'toggleCompleted' (fungsi untuk mengubah status tugas), dan 'deleteTodo' (fungsi untuk menghapus tugas).
 const Todos = ({ todos, toggleCompleted, deleteTodo }) => {
+  // Render tampilan daftar tugas.
   return (
     <div style={styles.container}>
       {" "}

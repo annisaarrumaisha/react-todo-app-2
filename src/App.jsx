@@ -4,6 +4,9 @@ import React, { useState } from "react";
 // Impor komponen 'Todos' yang digunakan untuk menampilkan daftar tugas.
 import Todos from "./components/Todos";
 
+// Impor komponen 'TodoForm' yang digunakan untuk menambahkan tugas baru.
+import TodoForm from "./components/TodoForm";
+
 // Komponen utama aplikasi kita, 'App'.
 function App() {
   // Definisikan state 'todos' yang berisi daftar tugas.
@@ -51,6 +54,27 @@ function App() {
     setTodos(updatedTodos);
   };
 
+  // Fungsi untuk menambahkan tugas baru ke daftar.
+  // 'todoTitle' adalah judul dari tugas yang akan ditambahkan.
+  const addTodo = (todoTitle) => {
+    if (todoTitle === "") {
+      // Jika input kosong, kita tidak melakukan apa-apa.
+      return;
+    }
+
+    // Buat objek tugas baru dengan ID yang unik, judul, dan status 'completed' default.
+    const newTodo = {
+      id: todos.length + 1, // ID baru berdasarkan panjang array saat ini.
+      title: todoTitle, // Judul tugas yang baru ditambahkan.
+      completed: false, // Tugas baru belum selesai.
+    };
+
+    // Tambahkan tugas baru ke dalam array tugas saat ini.
+    const updatedTodos = todos.concat(newTodo);
+    // Perbarui state 'todos' dengan array yang diperbarui.
+    setTodos(updatedTodos);
+  };
+
   // Render tampilan aplikasi.
   return (
     <div style={styles.container}>
@@ -58,6 +82,8 @@ function App() {
       {/* Gunakan CSS-in-JS untuk styling container utama */}
       <h1 style={styles.title}>My Todo List</h1>{" "}
       {/* Gunakan CSS-in-JS untuk styling judul */}
+      {/* Teruskan fungsi 'addTodo' sebagai props ke komponen 'TodoForm' */}
+      <TodoForm addTodo={addTodo} />
       {/* Teruskan data 'todos', fungsi 'toggleCompleted', dan 'deleteTodo' ke komponen 'Todos' */}
       <Todos
         todos={todos}
