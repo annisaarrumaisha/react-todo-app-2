@@ -1,8 +1,13 @@
-// Impor 'React' dari library React.
-import React from "react";
+// Impor 'React' dan hook 'useContext' dari library React.
+import React, { useContext } from "react";
+// Impor 'TodoContext' dari file 'App'.
+import { TodoContext } from "../App";
 
-// Komponen 'TodoItem' menerima tiga props: 'todo' (objek tugas individu), 'toggleCompleted' (fungsi untuk mengubah status tugas), dan 'deleteTodo' (fungsi untuk menghapus tugas).
-const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
+// Komponen 'TodoItem' menerima satu prop: 'todo' (objek tugas individu).
+const TodoItem = ({ todo }) => {
+  // Peroleh fungsi 'toggleCompleted' dan 'deleteTodo' dari 'TodoContext'.
+  const { toggleCompleted, deleteTodo } = useContext(TodoContext);
+
   // Fungsi untuk menentukan gaya judul berdasarkan status 'completed'.
   const getTodoTitleStyle = () => {
     if (todo.completed) {
@@ -17,8 +22,6 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
   // Render tampilan item tugas.
   return (
     <div style={styles.todoItem}>
-      {" "}
-      {/* Gunakan CSS-in-JS untuk styling item tugas */}
       <input
         type="checkbox" // Tambahkan checkbox untuk mengubah status tugas.
         style={styles.checkbox} // Gunakan CSS-in-JS untuk styling checkbox.
