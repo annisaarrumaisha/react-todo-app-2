@@ -1,11 +1,13 @@
-// Impor 'React' dan hook 'useState' dari library React.
-import React, { useState } from "react";
-
+// Impor 'React', 'useState', dan 'createContext' dari library React.
+import React, { useState, createContext } from "react";
 // Impor komponen 'Todos' yang digunakan untuk menampilkan daftar tugas.
 import Todos from "./components/Todos";
-
 // Impor komponen 'TodoForm' yang digunakan untuk menambahkan tugas baru.
 import TodoForm from "./components/TodoForm";
+
+// Buat sebuah context bernama 'TodoContext'.
+// Ini memungkinkan kita untuk berbagi fungsi dan state ke berbagai komponen tanpa perlu meneruskannya sebagai props.
+export const TodoContext = createContext();
 
 // Komponen utama aplikasi kita, 'App'.
 function App() {
@@ -77,20 +79,17 @@ function App() {
 
   // Render tampilan aplikasi.
   return (
-    <div style={styles.container}>
-      {" "}
-      {/* Gunakan CSS-in-JS untuk styling container utama */}
-      <h1 style={styles.title}>My Todo List</h1>{" "}
-      {/* Gunakan CSS-in-JS untuk styling judul */}
-      {/* Teruskan fungsi 'addTodo' sebagai props ke komponen 'TodoForm' */}
-      <TodoForm addTodo={addTodo} />
-      {/* Teruskan data 'todos', fungsi 'toggleCompleted', dan 'deleteTodo' ke komponen 'Todos' */}
-      <Todos
-        todos={todos}
-        toggleCompleted={toggleCompleted}
-        deleteTodo={deleteTodo}
-      />
-    </div>
+    // Bungkus komponen utama aplikasi dengan 'TodoContext.Provider'.
+    // Ini menyediakan fungsi 'toggleCompleted' dan 'deleteTodo' ke komponen anak melalui context.
+    <TodoContext.Provider value={{ toggleCompleted, deleteTodo }}>
+      <div style={styles.container}>
+        <h1 style={styles.title}>My Todo List</h1>
+        {/* Teruskan fungsi 'addTodo' sebagai props ke komponen 'TodoForm' */}
+        <TodoForm addTodo={addTodo} />
+        {/* Teruskan data 'todos' ke komponen 'Todos' */}
+        <Todos todos={todos} />
+      </div>
+    </TodoContext.Provider>
   );
 }
 
@@ -105,5 +104,6 @@ const styles = {
   },
 };
 
-// Ekspor komponen 'App' sebagai default export dari file ini, sehingga dapat digunakan di file lain.
+// Ekspor komponen 'App' sebagai default export dari file ini,
+// sehingga dapat digunakan di file lain.
 export default App;

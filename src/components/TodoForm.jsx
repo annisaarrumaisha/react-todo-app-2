@@ -29,7 +29,6 @@ const TodoForm = ({ addTodo }) => {
   // Render tampilan form untuk menambahkan tugas baru.
   return (
     <div style={styles.container}>
-      {" "}
       {/* Gunakan CSS-in-JS untuk styling container form */}
       <form
         onSubmit={(event) => {
