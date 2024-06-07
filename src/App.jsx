@@ -42,6 +42,15 @@ function App() {
     setTodos(updatedTodos);
   };
 
+  // Fungsi untuk menghapus tugas dari daftar.
+  // 'todoId' adalah ID dari tugas yang akan dihapus.
+  const deleteTodo = (todoId) => {
+    // Gunakan metode 'filter' untuk membuat array tugas yang tidak termasuk tugas yang akan dihapus.
+    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
+    // Perbarui state 'todos' dengan array tugas yang telah dihapus.
+    setTodos(updatedTodos);
+  };
+
   // Render tampilan aplikasi.
   return (
     <div style={styles.container}>
@@ -49,8 +58,12 @@ function App() {
       {/* Gunakan CSS-in-JS untuk styling container utama */}
       <h1 style={styles.title}>My Todo List</h1>{" "}
       {/* Gunakan CSS-in-JS untuk styling judul */}
-      {/* Teruskan data 'todos' dan fungsi 'toggleCompleted' ke komponen 'Todos' */}
-      <Todos todos={todos} toggleCompleted={toggleCompleted} />
+      {/* Teruskan data 'todos', fungsi 'toggleCompleted', dan 'deleteTodo' ke komponen 'Todos' */}
+      <Todos
+        todos={todos}
+        toggleCompleted={toggleCompleted}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 }
