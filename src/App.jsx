@@ -1,44 +1,58 @@
 // Impor 'React' dan hook 'useState' dari library React.
 import React, { useState } from "react";
 
-// Impor komponen 'Todos' yang akan digunakan di sini.
+// Impor komponen 'Todos' yang digunakan untuk menampilkan daftar tugas.
 import Todos from "./components/Todos";
 
-// Komponen 'App' adalah komponen utama dari aplikasi kita.
+// Komponen utama aplikasi kita, 'App'.
 function App() {
-  // Definisikan state 'todos' dengan hook 'useState'.
-  // 'todos' adalah sebuah array yang menyimpan daftar tugas (todo).
+  // Definisikan state 'todos' yang berisi daftar tugas.
+  // 'todos' adalah array dari objek-objek tugas.
   // 'setTodos' adalah fungsi untuk memperbarui state 'todos'.
   const [todos, setTodos] = useState([
     {
-      id: 1, // ID unik untuk todo pertama.
-      title: "Finish Progate React Course", // Judul dari todo pertama.
-      completed: false, // Status penyelesaian todo pertama (belum selesai).
+      id: 1, // ID unik untuk tugas pertama.
+      title: "Finish Progate React Course", // Judul dari tugas pertama.
+      completed: false, // Status penyelesaian tugas pertama (belum selesai).
     },
     {
-      id: 2, // ID unik untuk todo kedua.
-      title: "Have lunch with Guru Domba", // Judul dari todo kedua.
-      completed: false, // Status penyelesaian todo kedua (belum selesai).
+      id: 2, // ID unik untuk tugas kedua.
+      title: "Have lunch with Guru Domba", // Judul dari tugas kedua.
+      completed: false, // Status penyelesaian tugas kedua (belum selesai).
     },
     {
-      id: 3, // ID unik untuk todo ketiga.
-      title: "Study React with Ninja Ken", // Judul dari todo ketiga.
-      completed: false, // Status penyelesaian todo ketiga (belum selesai).
+      id: 3, // ID unik untuk tugas ketiga.
+      title: "Study React with Ninja Ken", // Judul dari tugas ketiga.
+      completed: false, // Status penyelesaian tugas ketiga (belum selesai).
     },
   ]);
 
-  // Cetak daftar 'todos' ke konsol untuk tujuan debugging.
+  // Cetak daftar 'todos' ke konsol untuk keperluan debugging.
   console.log(todos);
 
   // Render tampilan aplikasi.
   return (
-    <div>
-      <h1>My Todo List</h1> {/* Judul aplikasi */}
-      {/* Berikan data 'todos' ke komponen 'Todos' sebagai prop */}
+    <div style={styles.container}>
+      {" "}
+      {/* Gunakan CSS-in-JS untuk styling container utama */}
+      <h1 style={styles.title}>My Todo List</h1>{" "}
+      {/* Gunakan CSS-in-JS untuk styling judul */}
+      {/* Komponen 'Todos' menerima data 'todos' dan menampilkan daftar tugas */}
       <Todos todos={todos} />
     </div>
   );
 }
 
-// Ekspor komponen 'App' sebagai default export dari file ini, sehingga bisa diimpor dan digunakan di file lain.
+// Definisikan objek 'styles' untuk menyimpan gaya CSS menggunakan CSS-in-JS.
+const styles = {
+  container: {
+    textAlign: "center", // Atur teks agar berada di tengah.
+    padding: "12px", // Beri padding di sekitar container.
+  },
+  title: {
+    fontSize: "36px", // Ukuran font untuk judul.
+  },
+};
+
+// Ekspor komponen 'App' sebagai default export dari file ini, sehingga dapat digunakan di file lain.
 export default App;
