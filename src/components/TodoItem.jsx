@@ -5,7 +5,7 @@ import React from "react";
 const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
   // Fungsi untuk menentukan gaya judul berdasarkan status 'completed'.
   const getTodoTitleStyle = () => {
-    if (todo.completed === true) {
+    if (todo.completed) {
       // Jika 'completed' adalah true, gunakan gaya teks dengan coretan.
       return { textDecoration: "line-through" };
     } else {
