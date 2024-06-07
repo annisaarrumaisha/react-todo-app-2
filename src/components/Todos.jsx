@@ -1,22 +1,31 @@
 // Impor 'React' dari library React.
 import React from "react";
 
-// Impor komponen 'TodoItem' yang akan digunakan di sini.
+// Impor komponen 'TodoItem' yang digunakan untuk menampilkan setiap tugas.
 import TodoItem from "./TodoItem";
 
-// Komponen 'Todos' menerima prop 'todos' (array daftar tugas).
+// Komponen 'Todos' menerima prop 'todos' yang merupakan array dari tugas-tugas.
 const Todos = ({ todos }) => {
   return (
-    <div>
-      {/* Loop melalui setiap item dalam array 'todos' */}
+    <div style={styles.container}>
+      {" "}
+      {/* Gunakan CSS-in-JS untuk styling container */}
+      {/* Loop melalui setiap tugas dalam array 'todos' */}
       {todos.map((todo) => (
-        // Untuk setiap 'todo', render komponen 'TodoItem'.
-        // Berikan data 'todo' sebagai prop ke 'TodoItem'.
-        // 'key' adalah properti unik yang membantu React mengidentifikasi setiap elemen.
+        // Untuk setiap tugas, render komponen 'TodoItem'.
+        // 'key' adalah properti unik untuk membantu React mengidentifikasi elemen ini.
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>
   );
+};
+
+// Definisikan objek 'styles' untuk menyimpan gaya CSS menggunakan CSS-in-JS.
+const styles = {
+  container: {
+    width: "40%", // Lebar container adalah 40% dari lebar layar.
+    margin: "0 auto", // Pusatkan container secara horizontal.
+  },
 };
 
 // Ekspor komponen 'Todos' sebagai default export dari file ini.
