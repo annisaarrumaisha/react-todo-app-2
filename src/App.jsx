@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Impor komponen 'React' dan hook 'useState' dari library React.
+import React, { useState } from "react";
 
+// Fungsi 'App' adalah komponen utama aplikasi kita.
 function App() {
-  const [count, setCount] = useState(0)
+  // Definisikan state 'todos' dengan menggunakan hook 'useState'.
+  // State 'todos' adalah sebuah array yang menyimpan daftar todo.
+  // 'setTodos' adalah fungsi untuk mengubah nilai state 'todos'.
+  const [todos, setTodos] = useState([
+    {
+      id: 1, // ID unik untuk todo pertama
+      title: "Finish Progate React Course", // Judul dari todo pertama
+      completed: false, // Status penyelesaian todo pertama (belum selesai)
+    },
+    {
+      id: 2, // ID unik untuk todo kedua
+      title: "Have lunch with Guru Domba", // Judul dari todo kedua
+      completed: false, // Status penyelesaian todo kedua (belum selesai)
+    },
+    {
+      id: 3, // ID unik untuk todo ketiga
+      title: "Study React with Ninja Ken", // Judul dari todo ketiga
+      completed: false, // Status penyelesaian todo ketiga (belum selesai)
+    },
+  ]);
 
+  // Cetak daftar todos ke console browser untuk keperluan debugging.
+  console.log(todos);
+
+  // Render tampilan aplikasi.
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>My Todo List</h1> {/* Judul aplikasi */}
+      {/* Looping melalui setiap elemen dalam array 'todos' menggunakan metode 'map'. */}
+      {/* Untuk setiap todo, kita membuat elemen <p> untuk menampilkan judulnya. */}
+      {/* 'key' digunakan sebagai identifikasi unik untuk setiap elemen yang di-render. */}
+      {todos.map((todo) => {
+        return <p key={todo.id}>{todo.title}</p>;
+      })}
+    </div>
+  );
 }
 
-export default App
+// Ekspor komponen 'App' sebagai komponen default dari file ini, sehingga bisa di-import di file lain.
+export default App;
